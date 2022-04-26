@@ -23,11 +23,27 @@ Update the game, called for each frame
 
 Create a directory
 
+## cd
+
+Change directory
+
+## ls
+
+List directory
+
+## rm
+
+Remove file
+
 ## newbnk
 
     newbnk("save", 30, 7, 2)
 
 Create a bank
+
+## delbnk
+
+Delete a bank
 
 ## bank
 
@@ -67,6 +83,10 @@ Load assets from a directory
 
 Create a new window
 
+## delwin
+
+Delete a window
+
 ## winspec
 
     winspec("title", "Roguechess")
@@ -86,13 +106,21 @@ Limit the number of frame-per-second
 
     spritesheet(sheet)
 
-Change the current spritesheet?
+Change the current sprite sheet?
 
 ## newsrf
 
     newsrf("../../punkcake/punkcake_sheet.png", "pcd_sheet")
 
-Load a spritsheet?
+Load a sprite sheet?
+
+## sset
+
+Set a pixel color in the sprite sheet
+
+## sget
+
+Get a pixel color from the sprite sheet
 
 ## spr
 
@@ -142,6 +170,26 @@ Draw a filled circle
 
 Draw a filled rectangle
 
+## trifill
+
+Draw a filled triangle
+
+## tri
+
+Draw an empty triangle
+
+## rect
+
+Draw an empty rectangle
+
+## circ
+
+Draw an empty circle
+
+## line
+
+Draw a line
+
 ## cls
 
     cls(0)
@@ -183,6 +231,10 @@ Get button value
 
 # Sounds
 
+## newmus
+
+Load a music
+
 ## music
 
     music(s, 0, loop, fade_sec)
@@ -190,7 +242,6 @@ Get button value
 Start a music
 
 ## nxtmusic
-
 
     nxtmusic(sub(s, 1, #s - 1) .. "B", -1, true)
 
@@ -226,6 +277,24 @@ Load a SFX
 
 Unload a SFX
 
+# Text
+
+## newfnt
+
+Import font
+
+## delfnt
+
+Delete font
+
+## font
+
+Change current font?
+
+## print
+
+Print some text on screen?
+
 # Palette
 
 ## palette
@@ -243,8 +312,6 @@ Change palette color
 ## palt
 
 Change palette transparency
-
-
 
 ## rgb
 
@@ -284,21 +351,59 @@ Print to log file. Warning log?
 
 Wait until next frame?
 
-## t
+## t / time
 
     t()
 
-Get current time (in s?). Alias for time() ?
+Get current time (in s?). Alias for time()?
 
-# All functions
+## srand
 
-- srand
-- rnd
+Set rand seed
+
+## rnd
+
+Get random value?
+
+# GIF
+
+## newgif
+
+## gifframe
+
+## endgif
+
+## giflen
+
+## gifstream
+
+
+# Virtual machine command
+
+##  load
+
+## run
+
+## stop
+
+## step
+
+## resume
+
+## execute
+
+## help
+
+## man
+
+## changelog
+
+## mantxt
+
+# Other functions
+
 - irnd
-- fpslimit
-- t
 - dt
-- time
 - delta
 - sleep
 - freeze
@@ -311,10 +416,6 @@ Get current time (in s?). Alias for time() ?
 - rlog
 - logdupe
 - hex
-- assert
-- abort
-- abort_brutal
-- clipboard
 - newchk
 - delchk
 - modchk
@@ -327,20 +428,7 @@ Get current time (in s?). Alias for time() ?
 - memcpy
 - memset
 - memsbs
-- peek
-- peek2
-- peek4
-- poke
-- poke2
-- poke4
-- camera
-- tcamera
-- clip
 - color
-- pal
-- palette
-- rgb
-- hsv
 - newsrf
 - delsrf
 - expsrf
@@ -349,38 +437,14 @@ Get current time (in s?). Alias for time() ?
 - srfmem
 - srfsize
 - srfshot
-- newwin
-- delwin
 - window
 - flip
-- winspec
 - fillp
-- cls
-- rectfill
-- rect
-- circfill
-- circ
-- trifill
-- tri
-- line
-- pset
-- pget
-- spritesheet
-- sprgrid
-- palt
 - sfillp
-- spr
 - aspr
-- sspr
-- sset
-- sget
-- newfnt
-- delfnt
-- font
 - expfnt
 - fntinfo
 - strwidth
-- print
 - shader
 - shdrf
 - shdrf2
@@ -391,10 +455,7 @@ Get current time (in s?). Alias for time() ?
 - shdri3
 - shdri4
 - shdrsrf
-- newbnk
-- delbnk
 - expbnk
-- bank
 - bnksize
 - bset
 - bget
@@ -417,12 +478,6 @@ Get current time (in s?). Alias for time() ?
 - reset
 - sysbat
 - url
-- load
-- run
-- stop
-- step
-- resume
-- execute
 - newsfx
 - newmus
 - delsfx
@@ -436,23 +491,10 @@ Get current time (in s?). Alias for time() ?
 - unlockaudio
 - chnlfx
 - chnlprog
-- cd
-- ls
-- mkdir
 - folder
 - desktop_path
 - namefind
 - file
-- rm
-- newgif
-- gifframe
-- endgif
-- giflen
-- gifstream
-- help
-- man
-- changelog
-- mantxt
 - steam
 - discord
 

@@ -1,6 +1,20 @@
 # sugar-doc
 Unofficial documentation for the SUGAR game engine
 
+# Game loop
+
+## \_init
+
+Initialize the game, called once
+
+## \_draw
+
+Draw the game, called for each frame
+
+## \_update
+
+Update the game, called for each frame
+
 # System functions
 
 ## mkdir
@@ -39,13 +53,46 @@ Serialize bank file?
 
 Save to a file
 
+## dirload
+
+    dirload("assets/sfx", "wav", newsfx)
+
+Load assets from a directory
+
+# Window management
+
+## newwin
+
+    newwin("civ", MCW, MCH, MSC, "resize", "scale", "crt_calmos.shader")
+
+Create a new window
+
+## winspec
+
+    winspec("title", "Roguechess")
+    winspec("screen", MCW * 2, MCH * 2)
+
+Set options about the window
+
+## fpslimit
+
+    fpslimit(60)
+
+Limit the number of frame-per-second
+
 # Graphics
 
-## spritesheep
+## spritesheet
 
     spritesheet(sheet)
 
-Load a spriteshoot?
+Change the current spritesheet?
+
+## newsrf
+
+    newsrf("../../punkcake/punkcake_sheet.png", "pcd_sheet")
+
+Load a spritsheet?
 
 ## spr
 
@@ -65,17 +112,17 @@ Resize and print a sprite
 
 Print a grid?
 
-## palette
+## pset
 
-	palette(oplt)
+    pset(x + dx, y + dy, bright(pget(x + dx, y + dy), inc))
 
-Load a palette?
+Set a pixel color
 
-## pal
+## pget
 
-    pal(2, 1)
+    pget(x + dx, y + dy), inc)
 
-Change palette color
+Get a pixel color
 
 ## clip 
 
@@ -91,12 +138,23 @@ Draw a filled circle
 
 ## rectfill
 
-
     rectfill(clpx, clpy, clpx + 127, clpy + 167, 0)
 
 Draw a filled rectangle
 
+## cls
+
+    cls(0)
+
+Clear the screen
+
 ## camera
+
+    camera(shkx, shky - movy)
+
+Move the camera?
+
+## tcamera
 
     tcamera(x,y)
 
@@ -127,7 +185,22 @@ Get button value
 
 ## music
 
-    music("title_A")
+    music(s, 0, loop, fade_sec)
+
+Start a music
+
+## nxtmusic
+
+
+    nxtmusic(sub(s, 1, #s - 1) .. "B", -1, true)
+
+Change music?
+
+## sfx
+
+    sfx(str, -1, vol)
+
+Play an SFX
 
 ## musvol
 
@@ -141,7 +214,11 @@ Change music volume
 
 Change sfx volume
 
-Start a music
+## newsfx
+
+	newsfx("../../punkcake/slap.wav", "pcd_slap", 0.6)
+
+Load a SFX
 
 ## delsfx
 
@@ -149,13 +226,69 @@ Start a music
 
 Unload a SFX
 
+# Palette
+
+## palette
+
+	palette(oplt)
+
+Load a palette?
+
+## pal
+
+    pal(2, 1)
+
+Change palette color
+
+## palt
+
+Change palette transparency
+
+
+
+## rgb
+
+Get color from RGB values?
+
+## hsv
+
+Got color from HSV values?
+
+# Memory
+
+## peek/peek2/peek4
+
+Read from memory
+
+## poke/poke2/poke4
+
+Write to memory
+
 # Other
+
+## clipboard
+
+    cb = clipboard()
+
+Not clear
 
 ## wlog
 
     wlog("reset save")
 
-Print to log file
+Print to log file. Warning log?
+
+## sugar_step
+
+    sugar_step()
+
+Wait until next frame?
+
+## t
+
+    t()
+
+Get current time (in s?). Alias for time() ?
 
 # All functions
 

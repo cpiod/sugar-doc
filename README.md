@@ -35,6 +35,43 @@ List directory
 
 Remove file
 
+## controls
+
+```
+controls([[
+    0 > k:left, c:dpad:left
+    1 > k:right, c:dpad:right
+    2 > k:up, c:dpad:up
+    3 > k:down, c:dpad:down
+    action> k:x, c:a
+    kick> k:c, c:b, c:x
+    
+    input_kb> k:x,k:c,k:v,k:left,k:right,k:up,k:down
+    input_pad> c:dpad:left,c:lstick:left,c:dpad:right,c:lstick:right,c:dpad:up,c:lstick:up,c:dpad:down,c:lstick:down,c:a,c:ltrigger,c:b,c:x
+
+    tab> k:tab
+
+    ctrl> k:lctrl 
+    shift> k:lshift
+    pause>k:p, c:start, k:escape
+    +> k:kp_plus
+    -> k:kp_minus
+    f> k:f
+    r> k:r
+    
+    mx>m:x
+    my>m:y
+    lb>m:lb
+    rb>m:rb
+    
+    test> k:space
+    dev_skip_level> k:return
+    
+]])
+```
+
+Set the controls for the game. Uses a proprietary format?
+
 ## newbnk
 
     newbnk("save", 30, 7, 2)
@@ -63,6 +100,10 @@ Set a value in the current bank
 
 Serialize bank file?
 
+## bnksize
+
+TODO
+
 ## file
 
     file("save.bnk", expbnk("save"))
@@ -79,26 +120,51 @@ Load assets from a directory
 
 ## newwin
 
-    newwin("civ", MCW, MCH, MSC, "resize", "scale", "crt_calmos.shader")
+    newwin(name, width, height, pixel_size, [options])
 
-Create a new window
+Create a new window. This window will have width x height pixels. The size of the pixel is controlled by pixel_size.
+
+Options include:
+    - "resize"
+    - "scale"
+    - "crt_calmos.shader"
+
+The first created window has the Sugar animation played automatically.
+
+! Not sure about that.
 
 ## delwin
 
-Delete a window
+    delwin(name)
+
+Delete a window.
 
 ## winspec
 
-    winspec("title", "Roguechess")
+    winspec("title", "title of the window")
     winspec("screen", MCW * 2, MCH * 2)
 
 Set options about the window
+
+! Not sure about that.
 
 ## fpslimit
 
     fpslimit(60)
 
-Limit the number of frame-per-second
+Limit the number of FPS (frame-per-second). Does not affect the UPS (udpate-per-second).
+
+## fps
+
+    fps()
+
+Get the effective FPS.
+
+## url
+
+    url("http://...")
+
+Opens a URL in the browser.
 
 # Graphics
 
@@ -116,9 +182,13 @@ Load a sprite sheet?
 
 ## sset
 
+    sset(x,y,[col])
+
 Set a pixel color in the sprite sheet
 
 ## sget
+
+    sget(x,y)
 
 Get a pixel color from the sprite sheet
 
@@ -160,41 +230,51 @@ Change current draw zone. `clip()` to disable.
 
 ## circfill
 
-   circfill(cx, cy, 120, 1)
+   circfill(x, y, r, [col])
 
-Draw a filled circle
+Draw a filled circle. Same as PICO-8.
 
 ## rectfill
 
-    rectfill(clpx, clpy, clpx + 127, clpy + 167, 0)
+    rectfill(x0, y0, x1, y1, [col])
 
-Draw a filled rectangle
+Draw a filled rectangle. Same as PICO-8.
 
 ## trifill
 
-Draw a filled triangle
+    trifill(x0, y0, x1, y1, x2, y2, [col])
 
-## tri
-
-Draw an empty triangle
-
-## rect
-
-Draw an empty rectangle
+Draw a filled triangle.
 
 ## circ
 
-Draw an empty circle
+   circ(x, y, r, [col])
+
+Draw an empty circle. Same as PICO-8.
+
+## rect
+
+    rect(x0, y0, x1, y1, [col])
+
+Draw an empty rectangle. Same as PICO-8.
+
+## tri
+
+    tri(x0, y0, x1, y1, x2, y2, [col])
+
+Draw an empty triangle.
 
 ## line
 
-Draw a line
+    line(x0, y0, x1, y2, [col])
+
+Draw a line. Contrary to PICO-8, both start and end points are mandatory.
 
 ## cls
 
-    cls(0)
+    cls([col])
 
-Clear the screen
+Clear the screen with a color.
 
 ## camera
 
@@ -297,6 +377,12 @@ Print some text on screen?
 
 # Palette
 
+## color
+
+    color(col)
+
+Change current color.
+
 ## palette
 
 	palette(oplt)
@@ -339,11 +425,23 @@ Write to memory
 
 Not clear
 
+## log
+
+    log("Some message)
+
+Print a message to log file. Normal logs are preceded by "."
+
 ## wlog
 
-    wlog("reset save")
+    wlog("Some message")
 
-Print to log file. Warning log?
+Print a warning message to log file. Warning logs are preceded by "!!"
+
+## rlog
+
+    rlog("Some message")
+
+Print an critical message to log file and abort. Error logs are preceded by "ERR". Such log automatically triggers the end of the program and produce a stack trace.
 
 ## sugar_step
 
@@ -355,15 +453,25 @@ Wait until next frame?
 
     t()
 
-Get current time (in s?). Alias for time()?
+Get current time from Sugar start-up in s. Alias for `time()`.
 
 ## srand
 
-Set rand seed
+    srand(seed)
+
+Set rand seed.
 
 ## rnd
 
-Get random value?
+    rnd(max_value)
+
+Get random float value in `[0,max_value[`.
+
+## irnd
+
+    irnd(max_value)
+
+Get random integer value in `[0,max_value[`. Short for `flr(rnd(max_value))`.
 
 # GIF
 
@@ -377,10 +485,29 @@ Get random value?
 
 ## gifstream
 
+# Misc.
+
+## sleep
+
+    sleep(k)
+
+Put the program to sleep for k seconds.
+
+## freeze
+
+Same as sleep?
+
+## quit
+
+Stop the program.
+
+## reset
+
+Segfaut?
 
 # Virtual machine command
 
-##  load
+## load
 
 ## run
 
@@ -398,22 +525,19 @@ Get random value?
 
 ## changelog
 
+Segfault.
+
 ## mantxt
+
+Generate a manual.txt file.
 
 # Other functions
 
-- irnd
 - dt
 - delta
-- sleep
-- freeze
-- fps
 - aft
 - ltime
 - gtime
-- log
-- wlog
-- rlog
 - logdupe
 - hex
 - newchk
@@ -428,7 +552,6 @@ Get random value?
 - memcpy
 - memset
 - memsbs
-- color
 - newsrf
 - delsrf
 - expsrf
@@ -456,12 +579,7 @@ Get random value?
 - shdri4
 - shdrsrf
 - expbnk
-- bnksize
-- bset
-- bget
-- quit
 - quitting
-- controls
 - defbtn
 - inpnum
 - btn
@@ -475,18 +593,9 @@ Get random value?
 - ctrlr
 - sugar_step
 - export
-- reset
 - sysbat
-- url
-- newsfx
-- newmus
 - delsfx
 - delmus
-- sfxvol
-- musvol
-- sfx
-- music
-- nxtmusic
 - lockaudio
 - unlockaudio
 - chnlfx
